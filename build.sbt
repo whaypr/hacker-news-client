@@ -9,6 +9,6 @@ libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.0" % "test"
 libraryDependencies += "org.mockito" % "mockito-scala_2.13" % "1.6.2" % "test"
 
 // JSON parsing library
-libraryDependencies += "com.lihaoyi" %% "upickle" % "0.9.5"
+libraryDependencies += "com.lihaoyi" %% "upickle" % "1.6.0"
 
 assemblyJarName in assembly := "HackerNewsClient.jar"
