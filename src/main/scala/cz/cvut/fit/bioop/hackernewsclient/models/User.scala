@@ -1,4 +1,4 @@
-package cz.cvut.fit.bioop.hackernewsclient.DataFetcher
+package cz.cvut.fit.bioop.hackernewsclient.models
 
 import ujson.Value
 

@@ -1,11 +1,10 @@
-package cz.cvut.fit.bioop.hackernewsclient.CLArgsParser
+package cz.cvut.fit.bioop.hackernewsclient.parsing
 
-import cz.cvut.fit.bioop.hackernewsclient.{App, Utils}
-import cz.cvut.fit.bioop.hackernewsclient.CommandExecution.{AppExecutor, ItemExecutor, NewsExecutor, RetCode, UserExecutor}
 import cz.cvut.fit.bioop.hackernewsclient.CommandExecution.Command._
+import cz.cvut.fit.bioop.hackernewsclient.CommandExecution.Executor.RetCode
+import cz.cvut.fit.bioop.hackernewsclient.CommandExecution._
 import cz.cvut.fit.bioop.hackernewsclient.UI.{ItemDisplayer, NewsDisplayer, UserDisplayer}
-
-import scala.util.control.Breaks.break
+import cz.cvut.fit.bioop.hackernewsclient.{App, Utils}
 
 class CLArgsParser(args: Array[String]) {
 
@@ -13,16 +12,16 @@ class CLArgsParser(args: Array[String]) {
 
 
   def parse: Unit = {
-    var arg = nextArg.getOrElse({
-      (new AppHelpCommand).execute // there are no arguments
-      App.exit
-    })
-
     /* Parse app options */
     val appExecutor = new AppExecutor
 
-    while (arg.startsWith("-")) {
-      arg match {
+    var arg = ""
+    var argOpt = nextArg
+    if (argOpt.isEmpty)
+      appExecutor.addCommand(new AppHelpCommand) // there are no arguments
+
+    while ( argOpt.isDefined && argOpt.get.startsWith("-")) {
+      argOpt.get match {
         case "--help" | "-h" => appExecutor.addCommand(new AppHelpCommand)
         case "--version" | "-v" => appExecutor.addCommand(new AppVersionCommand)
         case "--page" | "-pg" =>
@@ -39,13 +38,17 @@ class CLArgsParser(args: Array[String]) {
           val value = tmp.getOrElse(throw new Exception("Page-size must be a number!"))
 
           appExecutor.addCommand(AppPageSizeCommand(value))
+        case "--time-to-live" | "-ttl" =>
+          arg = nextArg.getOrElse(throw new Exception("TTL must have a number value!"))
+
+          val tmp = Utils.toInt(arg)
+          val value = tmp.getOrElse(throw new Exception("TTL must be a number!"))
+
+          appExecutor.addCommand(AppTimeToLiveCommand(value))
         case _ => appExecutor.invalidOption
       }
 
-      arg = nextArg.getOrElse({
-        appExecutor.execute
-        App.exit
-      })
+      argOpt = nextArg
     }
 
     if (appExecutor.execute == RetCode.terminate)
@@ -57,6 +60,7 @@ class CLArgsParser(args: Array[String]) {
       case "news" => parseNews
       case "item" => parseItem
       case "user" => parseUser
+      case "clear-cache" | "cc" => clearCache
       case _ => throw new Exception("Invalid command option!")
     }
   }
@@ -144,6 +148,12 @@ class CLArgsParser(args: Array[String]) {
 
     userExecutor.execute
     App.displayer = Some(userDisplayer)
+  }
+
+
+  // CACHE
+  private def clearCache = {
+    //TODO
   }
 
 

@@ -1,18 +1,22 @@
 package cz.cvut.fit.bioop.hackernewsclient.CommandExecution
 
 import cz.cvut.fit.bioop.hackernewsclient.CommandExecution.Command.{AppHelpCommand, AppVersionCommand, Command, ItemIdCommand, NewsAsksCommand, NewsFirstCommand, NewsJobsCommand, NewsShowsCommand, NewsStoriesCommand, UserIdCommand}
-import cz.cvut.fit.bioop.hackernewsclient.CommandExecution.RetCode.{RetCode, continue}
+import cz.cvut.fit.bioop.hackernewsclient.CommandExecution.Executor.RetCode
+import cz.cvut.fit.bioop.hackernewsclient.CommandExecution.Executor.RetCode.RetCode
 
 trait Executor {
   def addCommand(command: Command): Unit
-  def execute: RetCode.RetCode
+  def execute: RetCode
 }
 
-object RetCode extends Enumeration {
-  type RetCode = Value
 
-  val terminate = Value("Terminate") // ID = 0
-  val continue = Value("Continue") // ID = 1
+object Executor {
+  object RetCode extends Enumeration {
+    type RetCode = Value
+
+    val terminate = Value("Terminate") // ID = 0
+    val continue = Value("Continue") // ID = 1
+  }
 }
 
 

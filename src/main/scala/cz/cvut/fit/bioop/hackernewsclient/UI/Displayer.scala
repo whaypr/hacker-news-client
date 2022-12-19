@@ -1,7 +1,8 @@
 package cz.cvut.fit.bioop.hackernewsclient.UI
 
 import cz.cvut.fit.bioop.hackernewsclient.App
-import cz.cvut.fit.bioop.hackernewsclient.DataFetcher.{DataFetcher, Item, User}
+import cz.cvut.fit.bioop.hackernewsclient.DataFetcher.DataFetcher
+import cz.cvut.fit.bioop.hackernewsclient.models.{Item, User}
 
 trait Displayer {
   def display: Unit

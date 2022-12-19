@@ -30,6 +30,9 @@ case class AppPageSizeCommand(n: Int) extends Command {
   override def execute: Unit = App.pageSize = n
 }
 
+case class AppTimeToLiveCommand(n: Int) extends Command {
+  override def execute: Unit = App.ttl = n
+}
 
 // NEWS -----------------------------------------------------
 case class NewsFirstCommand(displayer: NewsDisplayer) extends Command {

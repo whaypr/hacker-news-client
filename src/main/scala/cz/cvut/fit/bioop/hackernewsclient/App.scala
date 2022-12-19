@@ -33,6 +33,7 @@ object App {
 
   var page = 1
   var pageSize = 10
+  var ttl = 5000
 
   var displayer: Option[Displayer] = None
 

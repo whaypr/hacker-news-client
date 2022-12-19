@@ -1,5 +1,6 @@
 package cz.cvut.fit.bioop.hackernewsclient.DataFetcher
 
+import cz.cvut.fit.bioop.hackernewsclient.models.{Item, User}
 import upickle.default.read
 import upickle.default.{macroRW, ReadWriter => RW}
 

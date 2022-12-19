@@ -1,8 +1,9 @@
 package cz.cvut.fit.bioop.hackernewsclient
 
-import cz.cvut.fit.bioop.hackernewsclient.CLArgsParser.CLArgsParser
+import cz.cvut.fit.bioop.hackernewsclient.Cacher.Cacher
 import cz.cvut.fit.bioop.hackernewsclient.DataFetcher.DataFetcher
 import cz.cvut.fit.bioop.hackernewsclient.UI.Displayer
+import cz.cvut.fit.bioop.hackernewsclient.parsing.CLArgsParser
 
 object Main {
   def main(args: Array[String]): Unit = {
@@ -16,5 +17,7 @@ object Main {
 
     if (App.displayer.isDefined)
       App.displayer.get.display
+
+    new Cacher()
   }
 }
