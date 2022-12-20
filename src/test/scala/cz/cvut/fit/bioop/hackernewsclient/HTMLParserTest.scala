@@ -1,8 +1,8 @@
 package cz.cvut.fit.bioop.hackernewsclient
 
-import cz.cvut.fit.bioop.hackernewsclient.UI.HTMLParser
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should
+import ui.parsing.HTMLParser
 
 class HTMLParserTest extends AnyFlatSpec with should.Matchers {
   "HTMLParser" should "parse text and replace HTML codes with corresponding symbols " in {

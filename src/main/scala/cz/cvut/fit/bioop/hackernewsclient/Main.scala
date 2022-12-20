@@ -1,8 +1,7 @@
 package cz.cvut.fit.bioop.hackernewsclient
 
-import cz.cvut.fit.bioop.hackernewsclient.Cacher.Cacher
-import cz.cvut.fit.bioop.hackernewsclient.DataFetcher.DataFetcher
-import cz.cvut.fit.bioop.hackernewsclient.parsing.CLArgsParser
+import cz.cvut.fit.bioop.hackernewsclient.caching.Cacher
+import ui.parsing.CLArgsParser
 
 object Main {
   def main(args: Array[String]): Unit = {
