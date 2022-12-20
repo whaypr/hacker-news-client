@@ -1,6 +1,6 @@
 package cz.cvut.fit.bioop.hackernewsclient.CommandExecution
 
-import cz.cvut.fit.bioop.hackernewsclient.CommandExecution.Command.{AppHelpCommand, AppVersionCommand, Command, ItemIdCommand, NewsAsksCommand, NewsFirstCommand, NewsJobsCommand, NewsShowsCommand, NewsStoriesCommand, UserIdCommand}
+import cz.cvut.fit.bioop.hackernewsclient.CommandExecution.Command.{AppHelpCommand, AppVersionCommand, Command, ItemCommand, NewsAsksCommand, NewsFirstCommand, NewsJobsCommand, NewsShowsCommand, NewsStoriesCommand, UserCommand}
 import cz.cvut.fit.bioop.hackernewsclient.CommandExecution.Executor.RetCode
 import cz.cvut.fit.bioop.hackernewsclient.CommandExecution.Executor.RetCode.RetCode
 
@@ -31,8 +31,8 @@ class AppExecutor extends Executor {
 
   override def addCommand(command: Command): Unit = {
     command match {
-      case AppHelpCommand() => helpCommand = Some(new AppHelpCommand)
-      case AppVersionCommand()  => versionCommand = Some(new AppVersionCommand)
+      case _: AppHelpCommand => helpCommand = Some(new AppHelpCommand)
+      case _: AppVersionCommand  => versionCommand = Some(new AppVersionCommand)
       case _  => otherCommands = otherCommands.appended(command)
     }
   }
@@ -70,11 +70,11 @@ class NewsExecutor extends Executor {
 
   override def addCommand(command: Command): Unit = {
     command match {
-      case NewsFirstCommand(_) | NewsStoriesCommand(_,_) | NewsAsksCommand(_) | NewsShowsCommand(_) | NewsJobsCommand(_) =>
+      case _:NewsFirstCommand | _:NewsStoriesCommand | _:NewsAsksCommand | _:NewsShowsCommand | _:NewsJobsCommand =>
         if (endpointSet)
           throw new Exception("Command option already set!")
         endpointSet = true
-      case _ =>
+      case x => throw new Exception(s"NewsExecutor cannot work with $x!")
     }
 
     commands = commands.appended(command)
@@ -89,21 +89,21 @@ class NewsExecutor extends Executor {
 
 // ITEM
 class ItemExecutor extends Executor {
-  var idSet = false
+  var comments = false
+  private var id: Option[Int] = None
   private var commands: Seq[Command] = Seq()
 
-  override def addCommand(command: Command): Unit = {
-    command match {
-      case ItemIdCommand(_,_) => idSet = true
-      case _ =>
-    }
+  def setId(id: Int) = this.id = Some(id)
 
+  override def addCommand(command: Command): Unit = {
     commands = commands.appended(command)
   }
 
   override def execute: RetCode = {
-    if (!idSet)
+    if (id.isEmpty)
       throw new Exception("Item id must be set!")
+
+    addCommand(new ItemCommand(id.get, comments))
 
     commands.foreach(_.execute)
     RetCode.terminate
@@ -113,21 +113,21 @@ class ItemExecutor extends Executor {
 
 // USER
 class UserExecutor extends Executor {
-  var idSet = false
+  var stories = false
+  private var id: Option[String] = None
   private var commands: Seq[Command] = Seq()
 
-  override def addCommand(command: Command): Unit = {
-    command match {
-      case UserIdCommand(_,_) => idSet = true
-      case _ =>
-    }
+  def setId(id: String) = this.id = Some(id)
 
+  override def addCommand(command: Command): Unit = {
     commands = commands.appended(command)
   }
 
   override def execute: RetCode = {
-    if (!idSet)
+    if (id.isEmpty)
       throw new Exception("User id must be set!")
+
+    addCommand(new UserCommand(id.get, stories))
 
     commands.foreach(_.execute)
     RetCode.terminate

@@ -1,82 +1,96 @@
 package cz.cvut.fit.bioop.hackernewsclient.CommandExecution.Command
 
-import cz.cvut.fit.bioop.hackernewsclient.App
+import cz.cvut.fit.bioop.hackernewsclient.{App, Utils}
 import cz.cvut.fit.bioop.hackernewsclient.DataFetcher.DataFetcher
-import cz.cvut.fit.bioop.hackernewsclient.UI.{Displayer, ItemDisplayer, NewsDisplayer, UserDisplayer}
+import cz.cvut.fit.bioop.hackernewsclient.pages.TextPage
+import cz.cvut.fit.bioop.hackernewsclient.pages.concrete.{HelpPage, ItemPage, UserPage, VersionPage}
 
-abstract class Command {
+trait Command {
   def execute: Unit
+
+  def render(renderer: TextPage): Unit = {
+    val output = renderer.render()
+    println(output)
+  }
 }
 
 
 // APP -----------------------------------------------------
-case class AppHelpCommand() extends Command {
-  override def execute: Unit = {
-    println(App.help)
-  }
+class AppHelpCommand() extends Command {
+  override def execute: Unit = render(new HelpPage)
 }
 
-case class AppVersionCommand() extends Command {
-  override def execute: Unit = {
-    println(App.version)
-  }
+class AppVersionCommand() extends Command {
+  override def execute: Unit = render(new VersionPage)
 }
 
-case class AppPageCommand(n: Int) extends Command {
+class AppPageCommand(n: Int) extends Command {
   override def execute: Unit = App.page = n
 }
 
-case class AppPageSizeCommand(n: Int) extends Command {
+class AppPageSizeCommand(n: Int) extends Command {
   override def execute: Unit = App.pageSize = n
 }
 
-case class AppTimeToLiveCommand(n: Int) extends Command {
+class AppTimeToLiveCommand(n: Int) extends Command {
   override def execute: Unit = App.ttl = n
 }
 
+
 // NEWS -----------------------------------------------------
-case class NewsFirstCommand(displayer: NewsDisplayer) extends Command {
-  override def execute: Unit = displayer.ids = DataFetcher.fetchNews("maxitem")
+class NewsFirstCommand extends Command {
+  override def execute: Unit = {
+    val id = DataFetcher.fetchNews("maxitem")(0)
+    render(new ItemPage(id, false))
+  }
 }
 
-case class NewsStoriesCommand(displayer: NewsDisplayer, value: String) extends Command {
+class NewsStoriesCommand(newsType: String) extends Command {
   override def execute: Unit = {
-    value match {
-      case "top" => displayer.ids = DataFetcher.fetchNews("topstories")
-      case "new" => displayer.ids = DataFetcher.fetchNews("newstories")
-      case "best" => displayer.ids = DataFetcher.fetchNews("beststories")
+    newsType match {
+      case "top" =>
+        val ids = DataFetcher.fetchNews("topstories")
+        Utils.getSlice(ids).foreach{id => render(new ItemPage(id, false))}
+      case "new" =>
+        val ids = DataFetcher.fetchNews("newstories")
+        Utils.getSlice(ids).foreach { id => render(new ItemPage(id, false)) }
+      case "best" =>
+        val ids = DataFetcher.fetchNews("beststories")
+        Utils.getSlice(ids).foreach { id => render(new ItemPage(id, false)) }
     }
   }
 }
 
-case class NewsAsksCommand(displayer: NewsDisplayer) extends Command {
-  override def execute: Unit = displayer.ids = DataFetcher.fetchNews("askstories")
+class NewsAsksCommand extends Command {
+  override def execute: Unit = {
+    val ids = DataFetcher.fetchNews("askstories")
+    Utils.getSlice(ids).foreach{id => render(new ItemPage(id, false))}
+  }
 }
 
-case class NewsShowsCommand(displayer: NewsDisplayer) extends Command {
-  override def execute: Unit = displayer.ids = DataFetcher.fetchNews("showstories")
+class NewsShowsCommand extends Command {
+  override def execute: Unit = {
+    val ids = DataFetcher.fetchNews("showstories")
+    Utils.getSlice(ids).foreach { id => render(new ItemPage(id, false)) }
+  }
 }
 
-case class NewsJobsCommand(displayer: NewsDisplayer) extends Command {
-  override def execute: Unit = displayer.ids = DataFetcher.fetchNews("jobstories")
+class NewsJobsCommand extends Command {
+  override def execute: Unit = {
+    val ids = DataFetcher.fetchNews("jobstories")
+    Utils.getSlice(ids).foreach { id => render(new ItemPage(id, false)) }
+  }
 }
 
 
-// ITEM -----------------------------------------------------D
-case class ItemIdCommand(displayer: ItemDisplayer, id: Int) extends Command {
-  override def execute: Unit = displayer.id = id
-}
-
-case class ItemCommentsCommand(displayer: ItemDisplayer) extends Command {
-  override def execute: Unit = displayer.showComments = true
+// ITEM -----------------------------------------------------
+class ItemCommand(id: Int, comments: Boolean) extends Command {
+  override def execute: Unit = render(new ItemPage(id, comments))
 }
 
 
 // USER -----------------------------------------------------
-case class UserIdCommand(displayer: UserDisplayer, username: String) extends Command {
-  override def execute: Unit = displayer.username = username
+class UserCommand(username: String, stories: Boolean) extends Command {
+  override def execute: Unit = render(new UserPage(username, stories))
 }
 
-case class UserStoriesCommand(displayer: UserDisplayer) extends Command {
-  override def execute: Unit = displayer.showStories = true
-}
