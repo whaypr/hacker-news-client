@@ -1,6 +1,6 @@
 package cz.cvut.fit.bioop.hackernewsclient.ui.parsing.handlers.flags.news
 
-import cz.cvut.fit.bioop.hackernewsclient.commandExecution.commands.NewsStoriesCommand
+import cz.cvut.fit.bioop.hackernewsclient.commandExecution.commands.news.NewsStoriesCommand
 import cz.cvut.fit.bioop.hackernewsclient.ui.parsing.CommandLineParser
 import cz.cvut.fit.bioop.hackernewsclient.ui.parsing.handlers.FlagHandler
 import responsibilityChain.Handler

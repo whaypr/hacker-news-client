@@ -1,6 +1,7 @@
 package cz.cvut.fit.bioop.hackernewsclient.ui.parsing.handlers.flags.item
 
-import cz.cvut.fit.bioop.hackernewsclient.commandExecution.{Executor, ItemExecutor}
+import cz.cvut.fit.bioop.hackernewsclient.commandExecution.executors.ItemExecutor
+import cz.cvut.fit.bioop.hackernewsclient.commandExecution.Executor
 import cz.cvut.fit.bioop.hackernewsclient.ui.parsing.handlers.FlagHandler
 import responsibilityChain.Handler
 

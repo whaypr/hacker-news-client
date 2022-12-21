@@ -2,7 +2,7 @@ package cz.cvut.fit.bioop.hackernewsclient.ui.parsing
 
 import cz.cvut.fit.bioop.hackernewsclient.commandExecution.commands._
 import cz.cvut.fit.bioop.hackernewsclient.commandExecution.Executor.RetCode
-import cz.cvut.fit.bioop.hackernewsclient.commandExecution._
+import cz.cvut.fit.bioop.hackernewsclient.commandExecution.executors.{AppExecutor, ItemExecutor, NewsExecutor, UserExecutor}
 import cz.cvut.fit.bioop.hackernewsclient.ui.parsing.handlers.commands.{AppCommandHandler, ClearCacheCommandHandler, ItemCommandHandler, NewsCommandHandler, UserCommandHandler}
 import cz.cvut.fit.bioop.hackernewsclient.ui.parsing.handlers.CommandHandler
 import cz.cvut.fit.bioop.hackernewsclient.ui.parsing.handlers.errors.{AppErrorHandler, ItemErrorHandler, NewsErrorHandler, UserErrorHandler}
@@ -10,7 +10,9 @@ import cz.cvut.fit.bioop.hackernewsclient.ui.parsing.handlers.flags.app.{HelpFla
 import cz.cvut.fit.bioop.hackernewsclient.ui.parsing.handlers.flags.news.{AsksFlagHandler, FirstFlagHandler, JobsFlagHandler, ShowsFlagHandler, StoriesFlagHandler}
 import cz.cvut.fit.bioop.hackernewsclient.ui.parsing.handlers.flags.item.{CommentsFlagHandler, IdFlagHandler}
 import cz.cvut.fit.bioop.hackernewsclient.ui.parsing.handlers.flags.user
-import cz.cvut.fit.bioop.hackernewsclient.{App, Utils}
+import cz.cvut.fit.bioop.hackernewsclient.App
+import cz.cvut.fit.bioop.hackernewsclient.commandExecution.commands.app.AppHelpCommand
+import cz.cvut.fit.bioop.hackernewsclient.commandExecution.commands.news.NewsStoriesCommand
 import responsibilityChain.Handler
 
 class CommandLineParser(args: Array[String]) {

@@ -1,7 +1,7 @@
 package cz.cvut.fit.bioop.hackernewsclient.ui.parsing.handlers
 
 import cz.cvut.fit.bioop.hackernewsclient.commandExecution.Executor
-import cz.cvut.fit.bioop.hackernewsclient.commandExecution.commands.AppHelpCommand
+import cz.cvut.fit.bioop.hackernewsclient.commandExecution.commands.app.AppHelpCommand
 import responsibilityChain.Handler
 
 trait FlagHandler extends Handler[String]{

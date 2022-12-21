@@ -1,6 +1,6 @@
 package cz.cvut.fit.bioop.hackernewsclient.ui.parsing.handlers.errors
 
-import cz.cvut.fit.bioop.hackernewsclient.commandExecution.AppExecutor
+import cz.cvut.fit.bioop.hackernewsclient.commandExecution.executors.AppExecutor
 import cz.cvut.fit.bioop.hackernewsclient.ui.parsing.handlers.ErrorHandler
 import responsibilityChain.Handler
 

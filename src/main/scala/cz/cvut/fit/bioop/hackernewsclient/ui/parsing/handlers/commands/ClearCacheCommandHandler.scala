@@ -1,7 +1,7 @@
 package cz.cvut.fit.bioop.hackernewsclient.ui.parsing.handlers.commands
 
 import cz.cvut.fit.bioop.hackernewsclient.commandExecution.Executor
-import cz.cvut.fit.bioop.hackernewsclient.commandExecution.commands.ClearCacheCommand
+import cz.cvut.fit.bioop.hackernewsclient.commandExecution.commands.clearCache.ClearCacheCommand
 import cz.cvut.fit.bioop.hackernewsclient.ui.parsing.handlers.CommandHandler
 import responsibilityChain.Handler
 

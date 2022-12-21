@@ -17,7 +17,7 @@ class UserPage(username: String, stories: Boolean) extends TextPage
     var res = ""
 
     Utils.getSlice(user.submitted.get).foreach(x =>
-      res += new ItemPage(x, false) + "\n"
+      res += new ItemPage(x, false).render + "\n"
     )
 
     res

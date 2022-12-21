@@ -1,7 +1,7 @@
 package cz.cvut.fit.bioop.hackernewsclient.ui.parsing.handlers.flags.app
 
-import cz.cvut.fit.bioop.hackernewsclient.commandExecution.commands.AppPageSizeCommand
 import cz.cvut.fit.bioop.hackernewsclient.Utils
+import cz.cvut.fit.bioop.hackernewsclient.commandExecution.commands.app.AppPageSizeCommand
 import cz.cvut.fit.bioop.hackernewsclient.ui.parsing.CommandLineParser
 import cz.cvut.fit.bioop.hackernewsclient.ui.parsing.handlers.FlagHandler
 import responsibilityChain.Handler
