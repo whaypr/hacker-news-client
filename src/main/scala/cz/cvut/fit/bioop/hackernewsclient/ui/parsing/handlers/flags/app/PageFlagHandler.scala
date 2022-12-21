@@ -1,15 +1,17 @@
-package cz.cvut.fit.bioop.hackernewsclient.ui.parsing.handlers.commands.app
+package cz.cvut.fit.bioop.hackernewsclient.ui.parsing.handlers.flags.app
 
 import cz.cvut.fit.bioop.hackernewsclient.commandExecution.commands.AppPageCommand
-import cz.cvut.fit.bioop.hackernewsclient.commandExecution.Executor
 import cz.cvut.fit.bioop.hackernewsclient.Utils
 import cz.cvut.fit.bioop.hackernewsclient.ui.parsing.CommandLineParser
-import cz.cvut.fit.bioop.hackernewsclient.ui.parsing.handlers.{FlagHandler, Handler}
+import cz.cvut.fit.bioop.hackernewsclient.ui.parsing.handlers.FlagHandler
+import responsibilityChain.Handler
 
-class PageFlagHandler(val executor: Executor, argIterator: Iterator[String]) extends FlagHandler {
+class PageFlagHandler(argIterator: Iterator[String]) extends FlagHandler {
   override def handle(flag: String): Option[Handler[String]] = {
-    if (!flagNames.contains(flag))
-      return nextHandler
+    super.handle(flag) match {
+      case Some(v) => return Some(v)
+      case _ =>
+    }
 
     val arg = CommandLineParser.nextArg(argIterator).getOrElse(
       throw new Exception("Page must have a number value!")
@@ -18,7 +20,7 @@ class PageFlagHandler(val executor: Executor, argIterator: Iterator[String]) ext
       throw new Exception("Page must be a number!")
     )
 
-    executor.addCommand(new AppPageCommand(num))
+    executor.get.addCommand(new AppPageCommand(num))
     None
   }
 

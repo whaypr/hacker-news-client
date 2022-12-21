@@ -94,3 +94,8 @@ class UserCommand(username: String, stories: Boolean) extends Command {
   override def execute: Unit = render(new UserPage(username, stories))
 }
 
+
+// CLEAR CACHE -----------------------------------------------------
+class ClearCacheCommand extends Command {
+  override def execute: Unit = ???
+}

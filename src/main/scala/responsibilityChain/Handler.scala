@@ -1,4 +1,4 @@
-package cz.cvut.fit.bioop.hackernewsclient.ui.parsing.handlers
+package responsibilityChain
 
 import scala.annotation.tailrec
 
@@ -23,7 +23,7 @@ trait Handler[T] {
   /**
    * Internally saved next handler
    */
-  var nextHandler: Option[Handler[T]] = None
+  protected var nextHandler: Option[Handler[T]] = None
 }
 
 

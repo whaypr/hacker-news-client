@@ -28,7 +28,7 @@ class HelpPage extends TextPage
         |        --id              specify item id
         |        --comments        show item comments
         |    user --id= [--stories]
-        |        -id               specify user id (username)
+        |        --id               specify user id (username)
         |        --submit          show user submitted items
         |    clear-cache           clear cache with fetched items
         |""".stripMargin

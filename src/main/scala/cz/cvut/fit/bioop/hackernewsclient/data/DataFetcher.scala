@@ -18,7 +18,7 @@ object DataFetcher {
 
     try read[Seq[Int]](json.get)
     catch {
-      case _ => Seq(read[Int](json.get))
+      case _: Throwable => Seq(read[Int](json.get))
     }
   }
 
