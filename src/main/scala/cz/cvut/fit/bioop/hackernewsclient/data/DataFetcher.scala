@@ -7,9 +7,9 @@ import scala.io.Source
 import scala.util.Using
 
 object DataFetcher {
-  private val url_base: String = "https://hacker-news.firebaseio.com/v0/"
-  private val url_item: String = s"$url_base/item/"
-  private val url_user: String = s"$url_base/user/"
+  private var url_base: String = "https://hacker-news.firebaseio.com/v0/"
+  private def url_item: String = s"$url_base/item/"
+  private def url_user: String = s"$url_base/user/"
 
   def fetchNews(endpoint: String): Seq[Int] = {
     val json = Using(Source.fromURL(s"$url_base/$endpoint.json")) { source =>
@@ -22,6 +22,7 @@ object DataFetcher {
     }
   }
 
+
   def getItem(id: Int): Item = {
     val json = Using(Source.fromURL(s"$url_item/$id.json")) { source =>
       source.mkString
@@ -30,10 +31,14 @@ object DataFetcher {
     Item.buildFromJson(ujson.read(json.get))
   }
 
+
   def getUser(username: String): User = {
     val json = Using(Source.fromURL(s"$url_user/$username.json")) { source =>
       source.mkString
     }
     User.buildFromJson(ujson.read(json.get))
   }
+
+
+  def updateUrl(url: String) = url_base = url
 }
