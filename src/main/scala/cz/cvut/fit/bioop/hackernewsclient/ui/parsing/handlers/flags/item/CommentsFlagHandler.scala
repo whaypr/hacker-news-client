@@ -20,5 +20,5 @@ class CommentsFlagHandler extends FlagHandler {
     None
   }
 
-  override def flagNames: Vector[String] = Vector("--page", "-pg")
+  override def flagNames: Vector[String] = Vector("--comments", "-c")
 }

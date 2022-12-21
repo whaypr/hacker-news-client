@@ -2,7 +2,7 @@ package cz.cvut.fit.bioop.hackernewsclient.ui.parsing
 
 import cz.cvut.fit.bioop.hackernewsclient.commandExecution.commands._
 import cz.cvut.fit.bioop.hackernewsclient.commandExecution.Executor.RetCode
-import cz.cvut.fit.bioop.hackernewsclient.commandExecution.executors.{AppExecutor, ItemExecutor, NewsExecutor, UserExecutor}
+import cz.cvut.fit.bioop.hackernewsclient.commandExecution.executors.{AppExecutor, ClearCacheExecutor, ItemExecutor, NewsExecutor, UserExecutor}
 import cz.cvut.fit.bioop.hackernewsclient.ui.parsing.handlers.commands.{AppCommandHandler, ClearCacheCommandHandler, ItemCommandHandler, NewsCommandHandler, UserCommandHandler}
 import cz.cvut.fit.bioop.hackernewsclient.ui.parsing.handlers.CommandHandler
 import cz.cvut.fit.bioop.hackernewsclient.ui.parsing.handlers.errors.{AppErrorHandler, ItemErrorHandler, NewsErrorHandler, UserErrorHandler}
@@ -91,7 +91,11 @@ class CommandLineParser(args: Array[String]) {
 
       // clear cache
       case "clear-cache" | "cc" =>
-        null // TODO
+        val executor = new ClearCacheExecutor
+        val handler = new ClearCacheCommandHandler(executor)
+        handler.handle("dummy") // TODO refactor
+
+        handler
 
       // error
       case _ => throw new Exception("Invalid command option!")
