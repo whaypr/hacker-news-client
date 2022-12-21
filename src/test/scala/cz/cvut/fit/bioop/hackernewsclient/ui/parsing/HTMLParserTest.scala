@@ -1,10 +1,10 @@
-package cz.cvut.fit.bioop.hackernewsclient
+package cz.cvut.fit.bioop.hackernewsclient.ui.parsing
 
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should
-import ui.parsing.HTMLParser
 
 class HTMLParserTest extends AnyFlatSpec with should.Matchers {
+
   "HTMLParser" should "parse text and replace HTML codes with corresponding symbols " in {
     val p1 = HTMLParser.parse("Hello &quot;Patrik&quot;, how are you &#63;")
     p1 shouldEqual "Hello \"Patrik\", how are you ?"
