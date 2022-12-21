@@ -8,7 +8,7 @@ import cz.cvut.fit.bioop.hackernewsclient.ui.parsing.HTMLParser
 
 class ItemPage(id: Int, comments: Boolean) extends TextPage {
   override def render(): String = {
-    val item = DataFetcher.getItem(id)
+    val item = DataFetcher.get.getItem(id)
 
     if (!comments)
       return itemPage(item)
@@ -17,7 +17,7 @@ class ItemPage(id: Int, comments: Boolean) extends TextPage {
       var res = ""
 
       Utils.getSlice(item.kids.get).foreach(x =>
-        res += itemPage(DataFetcher.getItem(x)) + '\n'
+        res += itemPage(DataFetcher.get.getItem(x)) + '\n'
       )
 
       res

@@ -9,7 +9,7 @@ import cz.cvut.fit.bioop.hackernewsclient.ui.parsing.HTMLParser
 class UserPage(username: String, stories: Boolean) extends TextPage
 {
   override def render(): String = {
-    val user = DataFetcher.getUser(username)
+    val user = DataFetcher.get.getUser(username)
 
     if (!stories)
       return userPage(user)

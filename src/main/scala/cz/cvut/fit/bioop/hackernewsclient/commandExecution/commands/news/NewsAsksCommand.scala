@@ -7,7 +7,7 @@ import cz.cvut.fit.bioop.hackernewsclient.ui.pages.concrete.ItemPage
 
 class NewsAsksCommand extends Command {
   override def execute: Unit = {
-    val ids = DataFetcher.fetchNews("askstories")
+    val ids = DataFetcher.get.fetchNews("askstories")
     Utils.getSlice(ids).foreach { id =>
       render(new ItemPage(id, false))
     }

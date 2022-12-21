@@ -1,6 +1,6 @@
 package cz.cvut.fit.bioop.hackernewsclient
 
-import cz.cvut.fit.bioop.hackernewsclient.caching.Cacher
+import cz.cvut.fit.bioop.hackernewsclient.data.Caching
 import ui.parsing.CommandLineParser
 
 object Main {
@@ -10,7 +10,7 @@ object Main {
     try {
       parser.parse
     } catch {
-      case e: Exception => println("\nException in parser:\n" + e + "\n")
+      case e: Exception => println(e.getMessage)
     }
   }
 }

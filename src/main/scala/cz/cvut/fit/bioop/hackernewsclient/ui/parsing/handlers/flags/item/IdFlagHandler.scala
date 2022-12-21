@@ -14,10 +14,10 @@ class IdFlagHandler(argIterator: Iterator[String]) extends FlagHandler {
     }
 
     val arg = CommandLineParser.nextArg(argIterator).getOrElse(
-      throw new Exception("Page must have a number value!")
+      throw new Exception("Id must have a number value!")
     )
     val num = Utils.toInt(arg).getOrElse(
-      throw new Exception("Page must be a number!")
+      throw new Exception("Id must be a number!")
     )
 
     executor.get match {

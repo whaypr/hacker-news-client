@@ -15,7 +15,8 @@ class NewsExecutor extends Executor {
         if (endpointSet)
           throw new Exception("Command option already set!")
         endpointSet = true
-      case x => throw new Exception(s"NewsExecutor cannot work with $x!")
+      //case x => throw new Exception(s"NewsExecutor cannot work with $x!")
+      case _ =>
     }
 
     commands = commands.appended(command)
@@ -23,6 +24,6 @@ class NewsExecutor extends Executor {
 
   override def execute: RetCode = {
     commands.foreach(_.execute)
-    RetCode.continue
+    RetCode.terminate
   }
 }

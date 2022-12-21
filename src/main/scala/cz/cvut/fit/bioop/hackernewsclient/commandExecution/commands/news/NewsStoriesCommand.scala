@@ -9,17 +9,17 @@ class NewsStoriesCommand(newsType: String) extends Command {
   override def execute: Unit =
     newsType match {
       case "top" =>
-        val ids = DataFetcher.fetchNews("topstories")
+        val ids = DataFetcher.get.fetchNews("topstories")
         Utils.getSlice(ids).foreach { id =>
           render(new ItemPage(id, false))
         }
       case "new" =>
-        val ids = DataFetcher.fetchNews("newstories")
+        val ids = DataFetcher.get.fetchNews("newstories")
         Utils.getSlice(ids).foreach { id =>
           render(new ItemPage(id, false))
         }
       case "best" =>
-        val ids = DataFetcher.fetchNews("beststories")
+        val ids = DataFetcher.get.fetchNews("beststories")
         Utils.getSlice(ids).foreach { id =>
           render(new ItemPage(id, false))
         }
