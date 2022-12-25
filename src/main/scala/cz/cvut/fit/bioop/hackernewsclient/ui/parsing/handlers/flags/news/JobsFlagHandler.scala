@@ -4,6 +4,10 @@ import cz.cvut.fit.bioop.hackernewsclient.commandExecution.commands.news.NewsJob
 import cz.cvut.fit.bioop.hackernewsclient.ui.parsing.handlers.FlagHandler
 import responsibilityChain.Handler
 
+/**
+ * Handler for the news command's jobs flag
+ * @param executor
+ */
 class JobsFlagHandler(argIterator: Iterator[String]) extends FlagHandler {
   override def handle(flag: String): Option[Handler[String]] = {
     super.handle(flag) match {

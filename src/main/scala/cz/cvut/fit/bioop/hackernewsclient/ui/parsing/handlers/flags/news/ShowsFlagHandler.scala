@@ -4,6 +4,10 @@ import cz.cvut.fit.bioop.hackernewsclient.commandExecution.commands.news.NewsSho
 import cz.cvut.fit.bioop.hackernewsclient.ui.parsing.handlers.FlagHandler
 import responsibilityChain.Handler
 
+/**
+ * Handler for the news command's shows flag
+ * @param executor
+ */
 class ShowsFlagHandler(val argIterator: Iterator[String]) extends FlagHandler {
   override def handle(flag: String): Option[Handler[String]] = {
     super.handle(flag) match {

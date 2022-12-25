@@ -5,6 +5,10 @@ import cz.cvut.fit.bioop.hackernewsclient.commandExecution.Executor
 import cz.cvut.fit.bioop.hackernewsclient.ui.parsing.handlers.FlagHandler
 import responsibilityChain.Handler
 
+/**
+ * Handler for the items command's comments flag
+ * @param executor
+ */
 class CommentsFlagHandler extends FlagHandler {
   override def handle(flag: String): Option[Handler[String]] = {
     super.handle(flag) match {

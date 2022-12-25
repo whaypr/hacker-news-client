@@ -5,6 +5,9 @@ import cz.cvut.fit.bioop.hackernewsclient.commandExecution.Executor.RetCode
 import cz.cvut.fit.bioop.hackernewsclient.commandExecution.Executor.RetCode.RetCode
 import cz.cvut.fit.bioop.hackernewsclient.commandExecution.commands.news.{NewsAsksCommand, NewsFirstCommand, NewsJobsCommand, NewsShowsCommand, NewsStoriesCommand}
 
+/**
+ * Class representing the news command executor
+ */
 class NewsExecutor extends Executor {
   private var endpointSet = false
   private var commands: Seq[Command] = Seq()

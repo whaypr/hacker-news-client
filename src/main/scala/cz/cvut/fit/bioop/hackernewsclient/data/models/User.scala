@@ -4,6 +4,14 @@ import ujson.Value
 
 import scala.collection.mutable
 
+/**
+ * User data class
+ * @param id The user's unique username. Case-sensitive. Required.
+ * @param created Creation date of the user, in Unix Time.
+ * @param karma The user's karma.
+ * @param about The user's optional self-description. HTML.
+ * @param submitted List of the user's stories, polls and comments.
+ */
 case class User(
   id: String,
   created: Int,
@@ -12,7 +20,14 @@ case class User(
   submitted: Option[Vector[Int]] = None
 )
 
+
 object User {
+
+  /**
+   * Builds a user from JSON
+   * @param data
+   * @return Built user
+   */
   def buildFromJson(data: Value.Value): User = {
     var user: User = new User(
       data("id").toString.stripPrefix("\"").stripSuffix("\""),

@@ -3,7 +3,11 @@ package cz.cvut.fit.bioop.hackernewsclient.ui.parsing.handlers
 import cz.cvut.fit.bioop.hackernewsclient.commandExecution.Executor
 import responsibilityChain.Handler
 
+/**
+ * Handler for commands
+ */
 trait CommandHandler extends Handler[String]{
+
   override def handle(item: String): Option[Handler[String]] = nextHandler
 
   // TODO refactor

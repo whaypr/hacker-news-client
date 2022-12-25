@@ -1,7 +1,15 @@
 package cz.cvut.fit.bioop.hackernewsclient.ui.parsing
 
+/**
+ * HTML parser capable or parsing some of the both HTML code and HTML tags
+ */
 object HTMLParser {
 
+  /**
+   * Parses the HTML
+   * @param text HTML to be parsed
+   * @return Parsed HTML
+   */
   def parse(text: String): String = {
     /*
     text

@@ -6,6 +6,9 @@ import java.io.IOException
 import java.nio.file.attribute.BasicFileAttributes
 import java.nio.file.{FileVisitResult, Files, Path, Paths, SimpleFileVisitor}
 
+/**
+ * Class representing the clear cache command
+ */
 class ClearCacheCommand extends Command {
   override def execute: Unit = {
     val path = Paths.get("./.hnc_cache")
@@ -13,6 +16,10 @@ class ClearCacheCommand extends Command {
   }
 
 
+  /**
+   *
+   * @param root
+   */
   // from https://www.baeldung.com/scala/delete-directories-recursively
   private def delete(root: Path): Unit = {
     Files.walkFileTree(

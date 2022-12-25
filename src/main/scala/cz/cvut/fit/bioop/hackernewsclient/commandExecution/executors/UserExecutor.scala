@@ -5,6 +5,9 @@ import cz.cvut.fit.bioop.hackernewsclient.commandExecution.Executor.RetCode
 import cz.cvut.fit.bioop.hackernewsclient.commandExecution.Executor.RetCode.RetCode
 import cz.cvut.fit.bioop.hackernewsclient.commandExecution.commands.user.UserCommand
 
+/**
+ * Class representing the user command executor
+ */
 class UserExecutor extends Executor {
   var stories = false
   private var id: Option[String] = None

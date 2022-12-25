@@ -6,6 +6,11 @@ import cz.cvut.fit.bioop.hackernewsclient.data.models.User
 import cz.cvut.fit.bioop.hackernewsclient.ui.pages.TextPage
 import cz.cvut.fit.bioop.hackernewsclient.ui.parsing.HTMLParser
 
+/**
+ * Page with an user info
+ * @param id Id of the user
+ * @param stories Should stories be rendered or not
+ */
 class UserPage(username: String, stories: Boolean) extends TextPage
 {
   override def render(): String = {
@@ -24,6 +29,11 @@ class UserPage(username: String, stories: Boolean) extends TextPage
   }
 
 
+  /**
+   * Renders an user
+   * @param user
+   * @return
+   */
   protected def userPage(user: User): String = {
     var res = ""
 

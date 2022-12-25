@@ -4,6 +4,10 @@ import cz.cvut.fit.bioop.hackernewsclient.commandExecution.commands.news.NewsFir
 import cz.cvut.fit.bioop.hackernewsclient.ui.parsing.handlers.FlagHandler
 import responsibilityChain.Handler
 
+/**
+ * Handler for the news command's first flag
+ * @param executor
+ */
 class FirstFlagHandler extends FlagHandler {
   override def handle(flag: String): Option[Handler[String]] = {
     super.handle(flag) match {

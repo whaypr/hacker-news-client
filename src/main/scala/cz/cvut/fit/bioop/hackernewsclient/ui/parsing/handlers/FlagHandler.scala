@@ -4,7 +4,11 @@ import cz.cvut.fit.bioop.hackernewsclient.commandExecution.Executor
 import cz.cvut.fit.bioop.hackernewsclient.commandExecution.commands.app.AppHelpCommand
 import responsibilityChain.Handler
 
+/**
+ * Handler for flags
+ */
 trait FlagHandler extends Handler[String]{
+
   override def handle(flag: String): Option[Handler[String]] = {
     if (!flagNames.contains(flag))
       return nextHandler // another handle's work --> pass to the next

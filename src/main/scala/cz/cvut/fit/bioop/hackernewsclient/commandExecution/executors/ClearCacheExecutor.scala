@@ -5,6 +5,9 @@ import cz.cvut.fit.bioop.hackernewsclient.commandExecution.Executor.RetCode.RetC
 import cz.cvut.fit.bioop.hackernewsclient.commandExecution.commands.user.UserCommand
 import cz.cvut.fit.bioop.hackernewsclient.commandExecution.{Command, Executor}
 
+/**
+ * Class representing the clear cache command executor
+ */
 class ClearCacheExecutor extends Executor {
   private var command: Option[Command] = None
 

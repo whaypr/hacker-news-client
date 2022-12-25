@@ -5,6 +5,9 @@ import cz.cvut.fit.bioop.hackernewsclient.commandExecution.Executor.RetCode
 import cz.cvut.fit.bioop.hackernewsclient.commandExecution.Executor.RetCode.RetCode
 import cz.cvut.fit.bioop.hackernewsclient.commandExecution.commands.item.ItemCommand
 
+/**
+ * Class representing the item command executor
+ */
 class ItemExecutor extends Executor {
   var comments = false
   private var id: Option[Int] = None

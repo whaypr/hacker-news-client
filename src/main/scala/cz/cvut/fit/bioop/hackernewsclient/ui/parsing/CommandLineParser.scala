@@ -15,10 +15,18 @@ import cz.cvut.fit.bioop.hackernewsclient.commandExecution.commands.app.AppHelpC
 import cz.cvut.fit.bioop.hackernewsclient.commandExecution.commands.news.NewsStoriesCommand
 import responsibilityChain.Handler
 
+/**
+ * Command line arguments parser
+ * The core class of the application.
+ * @param args Arguments to parse
+ */
 class CommandLineParser(args: Array[String]) {
 
   private val it = args.iterator
 
+  /**
+   * Parses the arguments one by one
+   */
   def parse: Unit = {
     // parse app flags
     val appExecutor = new AppExecutor
@@ -113,6 +121,12 @@ class CommandLineParser(args: Array[String]) {
 
 
 object CommandLineParser {
+
+  /**
+   * Gets the next argument from an argument iterator
+   * @param it Argument iterator
+   * @return Some argument if exists, or None
+   */
   def nextArg(it: Iterator[String]): Option[String] = {
     if (it.hasNext)
       return Some(it.next)

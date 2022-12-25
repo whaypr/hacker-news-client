@@ -6,6 +6,9 @@ import cz.cvut.fit.bioop.hackernewsclient.data.models.{Item, User}
 import java.nio.file.{Files, Path, Paths}
 import java.nio.file.Files
 
+/**
+ * Extends DataFetcher with the caching functionality
+ */
 trait Caching extends DataFetcher {
 
   override def fetchNews(endpoint: String) = {
@@ -62,6 +65,9 @@ trait Caching extends DataFetcher {
 
   private val pathName = "./.hnc_cache"
 
+  /**
+   * Creates a directory structure where all cached items will be stored
+   */
   private def createDirectories: Unit = {
     Vector("", "items", "users").foreach{ x =>
       val path = Paths.get(s"$pathName/$x")

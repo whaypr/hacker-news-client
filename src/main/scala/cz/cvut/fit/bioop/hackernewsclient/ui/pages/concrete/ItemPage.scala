@@ -6,7 +6,13 @@ import cz.cvut.fit.bioop.hackernewsclient.data.models.Item
 import cz.cvut.fit.bioop.hackernewsclient.ui.pages.TextPage
 import cz.cvut.fit.bioop.hackernewsclient.ui.parsing.HTMLParser
 
+/**
+ * Page with an item info
+ * @param id Id of the item
+ * @param comments Should comments be rendered or not
+ */
 class ItemPage(id: Int, comments: Boolean) extends TextPage {
+
   override def render(): String = {
     val item = DataFetcher.get.getItem(id)
 
@@ -26,6 +32,11 @@ class ItemPage(id: Int, comments: Boolean) extends TextPage {
   }
 
 
+  /**
+   * Renders an item
+   * @param item
+   * @return
+   */
   protected def itemPage(item: Item): String = {
     item.`type`.getOrElse("") match {
       case "story" => storyPage(item)
@@ -35,6 +46,11 @@ class ItemPage(id: Int, comments: Boolean) extends TextPage {
   }
 
 
+  /**
+   * Renders an item of type "story"
+   * @param story
+   * @return
+   */
   protected def storyPage(story: Item): String = {
     var res = ""
 
@@ -63,6 +79,11 @@ class ItemPage(id: Int, comments: Boolean) extends TextPage {
   }
 
 
+  /**
+   * Renders an item of type "comment"
+   * @param comment
+   * @return
+   */
   protected def commentPage(comment: Item): String = {
     var res = ""
 

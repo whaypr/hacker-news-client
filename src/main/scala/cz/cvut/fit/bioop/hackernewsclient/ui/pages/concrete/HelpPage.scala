@@ -2,6 +2,9 @@ package cz.cvut.fit.bioop.hackernewsclient.ui.pages.concrete
 
 import cz.cvut.fit.bioop.hackernewsclient.ui.pages.TextPage
 
+/**
+ * Page with the help info
+ */
 class HelpPage extends TextPage
 {
   override def render(): String = {

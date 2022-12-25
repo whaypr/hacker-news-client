@@ -4,6 +4,9 @@ import cz.cvut.fit.bioop.hackernewsclient.commandExecution.{Command, Executor}
 import cz.cvut.fit.bioop.hackernewsclient.commandExecution.Executor.RetCode
 import cz.cvut.fit.bioop.hackernewsclient.commandExecution.commands.app.{AppHelpCommand, AppPageCommand, AppPageSizeCommand, AppTimeToLiveCommand, AppVersionCommand}
 
+/**
+ * Class representing the app executor
+ */
 class AppExecutor extends Executor {
   private var _invalidOption = false
 

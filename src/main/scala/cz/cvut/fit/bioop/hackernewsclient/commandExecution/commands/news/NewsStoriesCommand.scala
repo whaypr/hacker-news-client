@@ -5,6 +5,9 @@ import cz.cvut.fit.bioop.hackernewsclient.commandExecution.Command
 import cz.cvut.fit.bioop.hackernewsclient.data.DataFetcher
 import cz.cvut.fit.bioop.hackernewsclient.ui.pages.concrete.ItemPage
 
+/**
+ * Class representing the news's command stories flag
+ */
 class NewsStoriesCommand(newsType: String) extends Command {
   override def execute: Unit =
     newsType match {

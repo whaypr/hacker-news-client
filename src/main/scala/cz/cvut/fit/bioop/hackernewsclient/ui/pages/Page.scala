@@ -1,5 +1,9 @@
 package cz.cvut.fit.bioop.hackernewsclient.ui.pages
 
+/**
+ * Page which can be rendered somewhere
+ * @tparam T
+ */
 trait Page[T]
 {
   /**

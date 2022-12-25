@@ -1,5 +1,8 @@
 package cz.cvut.fit.bioop.hackernewsclient
 
+/**
+ * Global application configuration
+ */
 // TODO refactor
 object App {
   var page = 1

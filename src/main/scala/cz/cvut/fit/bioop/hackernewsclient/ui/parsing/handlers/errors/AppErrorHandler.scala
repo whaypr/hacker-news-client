@@ -4,6 +4,10 @@ import cz.cvut.fit.bioop.hackernewsclient.commandExecution.executors.AppExecutor
 import cz.cvut.fit.bioop.hackernewsclient.ui.parsing.handlers.ErrorHandler
 import responsibilityChain.Handler
 
+/**
+ * Error handler for the app
+ * @param executor
+ */
 class AppErrorHandler extends ErrorHandler {
   override def handle(item: String): Option[Handler[String]] = {
     executor.get match {

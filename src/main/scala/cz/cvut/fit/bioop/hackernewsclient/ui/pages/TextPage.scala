@@ -1,5 +1,8 @@
 package cz.cvut.fit.bioop.hackernewsclient.ui.pages
 
+/**
+ * Page of text
+ */
 trait TextPage extends Page[String]
 {
   /**
